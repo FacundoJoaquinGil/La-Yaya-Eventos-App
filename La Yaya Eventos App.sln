@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "La Yaya Eventos App", "La Yaya Eventos App\La Yaya Eventos App.csproj", "{B57A58B6-88E7-4CDD-B64E-8626E249A975}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B57A58B6-88E7-4CDD-B64E-8626E249A975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57A58B6-88E7-4CDD-B64E-8626E249A975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57A58B6-88E7-4CDD-B64E-8626E249A975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57A58B6-88E7-4CDD-B64E-8626E249A975}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB90E405-159D-4717-97DF-3242C225BDD0}
+	EndGlobalSection
+EndGlobal
