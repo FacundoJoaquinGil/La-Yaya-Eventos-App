@@ -16,17 +16,20 @@ namespace La_Yaya_Eventos_App
         {
             //private List<Comida> comidas = new List<Comida>();
             InitializeComponent();
-            
+
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-           
+
+
+
+            this.Resize += new EventHandler(Form1_Resize_1); // Conectar el evento
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             //this.WindowState = FormWindowState.Maximized;
 
-            CenterControl(panel1);
-            CenterControl(panel2);
+
 
             // Asignar eventos a los TextBox deseados
             txtPrecioUnidad.KeyDown += textBox_KeyDown;
@@ -44,26 +47,33 @@ namespace La_Yaya_Eventos_App
             txtPorcentajeGanancia.KeyDown += textBox_KeyDown;
             txtPorcentajeGanancia.TextChanged += textBox_TextChanged;
 
+
+
+
         }
 
-        private void CenterControl(Control control)
-        {
-            // Centra horizontalmente
-            control.Left = (this.ClientSize.Width - control.Width) / 2;
-
-            // Centra verticalmente
-            control.Top = (this.ClientSize.Height - control.Height) / 2;
-        }
 
 
         private void btnCrearPresupuesto_Click_1(object sender, EventArgs e)
         {
             panel1.Visible = true;
+
+            label1.Visible = false;
+            pictureBox1.Visible = false;
+            btnCrearPresupuesto.Visible = false;
+
+            CenterPanel(panel1);
+
         }
 
         private void btnvolver_inicio_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
+
+
+            label1.Visible = true;
+            pictureBox1.Visible = true;
+            btnCrearPresupuesto.Visible = true;
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
@@ -103,7 +113,7 @@ namespace La_Yaya_Eventos_App
             decimal precioPorUnidad = Convert.ToDecimal(txtPrecioUnidad.Text);
             int cantidadPorPersona = Convert.ToInt32(txtCantidadPersona.Text);
 
-            
+
 
             // Calcular el subtotal
             decimal subtotal = precioPorUnidad * cantidadPorPersona;
@@ -117,6 +127,9 @@ namespace La_Yaya_Eventos_App
 
         private void btnCalcular_Click(object sender, EventArgs e)
         {
+
+            CenterPanel(panel2);
+
             // Validar que todos los campos necesarios estén llenos
             if (string.IsNullOrEmpty(txtCantidadPersonas.Text) ||
                 string.IsNullOrEmpty(txtPagoMozos.Text) ||
@@ -125,6 +138,8 @@ namespace La_Yaya_Eventos_App
             {
                 // Mostrar mensaje de alerta si algún campo está vacío
                 MessageBox.Show("Por favor, complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                panel1.Visible = true;
+                panel2.Visible = false;
                 return; // Detener la ejecución si faltan campos
             }
 
@@ -260,12 +275,15 @@ namespace La_Yaya_Eventos_App
             int pageWidth = e.PageBounds.Width;
             int pageHeight = e.PageBounds.Height;
 
-            // Calcular las coordenadas X e Y para centrar la imagen
-            int x = (pageWidth - imageWidth) / 2;
-            int y = (pageHeight - imageHeight) / 2;
+            // Calcular el factor de escala si la imagen es más grande que la página
+            float scale = Math.Min((float)pageWidth / imageWidth, (float)pageHeight / imageHeight);
 
-            // Dibujar la imagen centrada en la página
-            e.Graphics.DrawImage(bmp, x, y);
+            // Calcular las coordenadas X e Y para centrar la imagen y aplicar el escalado
+            int x = (int)((pageWidth - (imageWidth * scale)) / 2);
+            int y = (int)((pageHeight - (imageHeight * scale)) / 2);
+
+            // Dibujar la imagen escalada y centrada en la página
+            e.Graphics.DrawImage(bmp, x, y, imageWidth * scale, imageHeight * scale);
         }
 
         private void btnNuevoPresupuesto_Click(object sender, EventArgs e)
@@ -294,22 +312,73 @@ namespace La_Yaya_Eventos_App
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            txtPrecioUnidad.Text = string.Empty; 
+            txtPrecioUnidad.Text = string.Empty;
             txtCantidadPersona.Text = string.Empty;
-            
+
             txtCantidadPersonas.Text = string.Empty;
             txtPagoMozos.Text = string.Empty;
             txtPorcentajeGanancia.Text = string.Empty;
 
-            
-            comboBox1.Text = "Seleccione una comida"; 
 
-            
-            dgvComidas.Rows.Clear(); 
+            comboBox1.Text = "Seleccione una comida";
 
-            
-            lblTotal.Text = "Total: $0"; 
+
+            dgvComidas.Rows.Clear();
+
+
+            lblTotal.Text = "Total: $0";
             lblGanancia.Text = "Total: $0";
+
+        }
+
+        private void Form1_Resize_1(object sender, EventArgs e)
+        {
+            // Ajustar el tamaño del panel activo
+
+
+            // Opcionalmente, puedes centrar la imagen y el label si están visibles
+            CenterStaticControls(); // Este método se usa solo si deseas mantener la imagen y el label centrados cuando están visibles
+
+            CenterPanel(panel1);
+            CenterPanel(panel2);
+
+        }
+
+        private void CenterPanel(Panel panel)
+        {
+            if (panel.Visible)
+            {
+                // Calcula la nueva posición centrada
+                int x = (this.ClientSize.Width - panel.Width) / 2;
+                int y = (this.ClientSize.Height - panel.Height) / 2;
+
+                // Asegura que el panel no se salga del formulario
+                x = Math.Max(0, x);
+                y = Math.Max(0, y);
+
+                // Asigna la nueva ubicación
+                panel.Location = new Point(x, y);
+            }
+        }
+
+        private void CenterStaticControls()
+        {
+            // Centrar la imagen
+            pictureBox1.Location = new Point((this.ClientSize.Width - pictureBox1.Width) / 2, 20);
+
+            // Centrar el label debajo de la imagen
+            label1.Location = new Point((this.ClientSize.Width - label1.Width) / 2, pictureBox1.Bottom + 10);
+
+
+            int margin = 150; // Margen desde la parte inferior
+            btnCrearPresupuesto.Location = new Point((this.ClientSize.Width - btnCrearPresupuesto.Width) / 2, this.ClientSize.Height - btnCrearPresupuesto.Height - margin); // Posicionar el botón centrado en la parte inferior
+
+
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
 
         }
     }
