@@ -157,7 +157,7 @@ namespace La_Yaya_Eventos_App
             StringBuilder resumenComida = new StringBuilder();
 
             // Agregar un título al resumen
-            resumenComida.AppendLine("Resumen del Presupuesto:");
+            resumenComida.AppendLine($"Resumen del Presupuesto: para {cantidadPersonas} personas.");
             resumenComida.AppendLine("========================\n");
 
             foreach (DataGridViewRow row in dgvComidas.Rows)
@@ -174,7 +174,7 @@ namespace La_Yaya_Eventos_App
                     totalComida = subTotalPorPersona + totalComida;
 
                     // Formatear la salida de la comida
-                    resumenComida.AppendLine($"{tipoComida}: {cantidadPorPersona} por persona, Precio unidad: ${precioUnidad}, Subtotal: ${subTotalPorPersona}");
+                    resumenComida.AppendLine($"{tipoComida} {cantidadPorPersona} por persona, P/U ${precioUnidad}.");
                 }
             }
 

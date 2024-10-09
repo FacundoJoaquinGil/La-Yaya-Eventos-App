@@ -314,7 +314,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Sandwiches triples de jamón y queso", "Sandwiches triples de pollo, huevo y morrón", "Sandwiches triples de ternera y queso", "Empanadas Carne", "Empanadas Pollo", "Empanadas fugazzeta", "Empanadas de choclo", "Pizzetas", "Quipes", "Tarteletas" });
+            comboBox1.Items.AddRange(new object[] { "\"Plato Principal\" Pata muslo", "\"Plato Principal\" Pollo relleno", "\"Plato Principal\" Lomo al champignon", "\"Plato Principal\" Muslo relleno", "\"Plato Principal\" Asado", "Sandwiches triples de jamón y queso", "Sandwiches triples de pollo, huevo y morrón", "Sandwiches triples de ternera y queso", "Empanadas Carne", "Empanadas Pollo", "Empanadas fugazzeta", "Empanadas de choclo", "Pizzetas", "Quipes", "Tarteletas", "Pollo Picado" });
             comboBox1.Location = new Point(78, 64);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(265, 23);
