@@ -254,7 +254,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = SystemColors.ControlLight;
+            btnCancelar.BackColor = SystemColors.ButtonHighlight;
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.Red;
             btnCancelar.Location = new Point(591, 677);
