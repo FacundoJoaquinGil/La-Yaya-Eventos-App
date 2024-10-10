@@ -3,6 +3,7 @@ using System.Drawing.Printing;
 using System.Text;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 
@@ -174,7 +175,7 @@ namespace La_Yaya_Eventos_App
                     totalComida = subTotalPorPersona + totalComida;
 
                     // Formatear la salida de la comida
-                    resumenComida.AppendLine($"{tipoComida} {cantidadPorPersona} por persona, P/U ${precioUnidad}.");
+                    resumenComida.AppendLine($"{tipoComida} .");
                 }
             }
 
@@ -377,9 +378,35 @@ namespace La_Yaya_Eventos_App
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void cbNinos_CheckedChanged(object sender, EventArgs e)
         {
+            panel3.Visible = cbNinos.Checked;
 
+        }
+
+        private void btnAgregarNinos_Click(object sender, EventArgs e)
+        {
+            //if (comboBox1.SelectedIndex == -1 || comboBox1.SelectedItem.ToString() == "Seleccione una comida" ||
+            //    string.IsNullOrEmpty(txtPrecioUnidad.Text) ||
+            //    string.IsNullOrEmpty(txtCantidadPersona.Text))
+            //{
+            //    // Mostrar mensaje de alerta si algún campo está vacío
+            //    MessageBox.Show("Por Favor Ingrese todos los datos del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return; // Detener la ejecución si faltan campos
+            //}
+
+            //// Obtener valores de los controles
+            //string tipoComida = comboBox1.SelectedItem.ToString();
+            //decimal precioPorUnidad = Convert.ToDecimal(txtPrecioUnidad.Text);
+            //int cantidadPorPersona = Convert.ToInt32(txtCantidadPersona.Text);
+
+
+
+            //// Calcular el subtotal
+            //decimal subtotal = precioPorUnidad * cantidadPorPersona;
+
+            //// Agregar una nueva fila al DataGridView
+            //dgvComidas.Rows.Add(tipoComida, precioPorUnidad, cantidadPorPersona, subtotal);
         }
     }
 }

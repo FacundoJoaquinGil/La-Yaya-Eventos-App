@@ -33,6 +33,15 @@
             pictureBox1 = new PictureBox();
             btnCrearPresupuesto = new Button();
             panel1 = new Panel();
+            panel3 = new Panel();
+            lblPrecioNinos = new Label();
+            btnAgregarNinos = new Button();
+            lblNinosTotales = new Label();
+            txtPrecioNinos = new TextBox();
+            textNinosTotales = new TextBox();
+            textCantidadNinos = new TextBox();
+            lblCantidadNinos = new Label();
+            cbNinos = new CheckBox();
             label8 = new Label();
             btnCancelar = new Button();
             label7 = new Label();
@@ -64,6 +73,7 @@
             label6 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
+            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvComidas).BeginInit();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -103,6 +113,8 @@
             // 
             panel1.Anchor = AnchorStyles.None;
             panel1.BackColor = SystemColors.ControlLightLight;
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(cbNinos);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(btnCancelar);
             panel1.Controls.Add(label7);
@@ -121,11 +133,114 @@
             panel1.Controls.Add(btnvolver_inicio);
             panel1.Controls.Add(comboBox1);
             panel1.ForeColor = SystemColors.ControlText;
-            panel1.Location = new Point(314, 3);
+            panel1.Location = new Point(53, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(725, 861);
+            panel1.Size = new Size(1150, 861);
             panel1.TabIndex = 3;
             panel1.Visible = false;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(lblPrecioNinos);
+            panel3.Controls.Add(btnAgregarNinos);
+            panel3.Controls.Add(lblNinosTotales);
+            panel3.Controls.Add(txtPrecioNinos);
+            panel3.Controls.Add(textNinosTotales);
+            panel3.Controls.Add(textCantidadNinos);
+            panel3.Controls.Add(lblCantidadNinos);
+            panel3.Location = new Point(665, 59);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(358, 181);
+            panel3.TabIndex = 25;
+            panel3.Visible = false;
+            // 
+            // lblPrecioNinos
+            // 
+            lblPrecioNinos.AutoSize = true;
+            lblPrecioNinos.FlatStyle = FlatStyle.Flat;
+            lblPrecioNinos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrecioNinos.Location = new Point(25, 14);
+            lblPrecioNinos.Name = "lblPrecioNinos";
+            lblPrecioNinos.RightToLeft = RightToLeft.No;
+            lblPrecioNinos.Size = new Size(142, 17);
+            lblPrecioNinos.TabIndex = 19;
+            lblPrecioNinos.Text = "Precio Por Unidad:   $";
+            // 
+            // btnAgregarNinos
+            // 
+            btnAgregarNinos.BackColor = SystemColors.ButtonHighlight;
+            btnAgregarNinos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregarNinos.ForeColor = Color.ForestGreen;
+            btnAgregarNinos.Location = new Point(25, 130);
+            btnAgregarNinos.Name = "btnAgregarNinos";
+            btnAgregarNinos.RightToLeft = RightToLeft.No;
+            btnAgregarNinos.Size = new Size(206, 40);
+            btnAgregarNinos.TabIndex = 17;
+            btnAgregarNinos.Text = "Agregar Menu Niños a la Lista";
+            btnAgregarNinos.UseVisualStyleBackColor = false;
+            btnAgregarNinos.Click += btnAgregarNinos_Click;
+            // 
+            // lblNinosTotales
+            // 
+            lblNinosTotales.AutoSize = true;
+            lblNinosTotales.FlatStyle = FlatStyle.Flat;
+            lblNinosTotales.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNinosTotales.Location = new Point(25, 90);
+            lblNinosTotales.Name = "lblNinosTotales";
+            lblNinosTotales.RightToLeft = RightToLeft.No;
+            lblNinosTotales.Size = new Size(161, 17);
+            lblNinosTotales.TabIndex = 23;
+            lblNinosTotales.Text = "Cantidad Total de Niños:";
+            // 
+            // txtPrecioNinos
+            // 
+            txtPrecioNinos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtPrecioNinos.Location = new Point(173, 8);
+            txtPrecioNinos.Name = "txtPrecioNinos";
+            txtPrecioNinos.RightToLeft = RightToLeft.No;
+            txtPrecioNinos.Size = new Size(100, 23);
+            txtPrecioNinos.TabIndex = 18;
+            // 
+            // textNinosTotales
+            // 
+            textNinosTotales.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textNinosTotales.Location = new Point(192, 84);
+            textNinosTotales.Name = "textNinosTotales";
+            textNinosTotales.RightToLeft = RightToLeft.No;
+            textNinosTotales.Size = new Size(100, 23);
+            textNinosTotales.TabIndex = 22;
+            // 
+            // textCantidadNinos
+            // 
+            textCantidadNinos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textCantidadNinos.Location = new Point(237, 43);
+            textCantidadNinos.Name = "textCantidadNinos";
+            textCantidadNinos.RightToLeft = RightToLeft.No;
+            textCantidadNinos.Size = new Size(100, 23);
+            textCantidadNinos.TabIndex = 20;
+            // 
+            // lblCantidadNinos
+            // 
+            lblCantidadNinos.AutoSize = true;
+            lblCantidadNinos.FlatStyle = FlatStyle.Flat;
+            lblCantidadNinos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCantidadNinos.Location = new Point(25, 49);
+            lblCantidadNinos.Name = "lblCantidadNinos";
+            lblCantidadNinos.RightToLeft = RightToLeft.No;
+            lblCantidadNinos.Size = new Size(206, 17);
+            lblCantidadNinos.TabIndex = 21;
+            lblCantidadNinos.Text = "Cantidad de Unidades por Niño:";
+            // 
+            // cbNinos
+            // 
+            cbNinos.AutoSize = true;
+            cbNinos.Location = new Point(228, 204);
+            cbNinos.Name = "cbNinos";
+            cbNinos.Size = new Size(136, 19);
+            cbNinos.TabIndex = 24;
+            cbNinos.Text = "Agregar Menu Niños";
+            cbNinos.UseVisualStyleBackColor = true;
+            cbNinos.CheckedChanged += cbNinos_CheckedChanged;
             // 
             // label8
             // 
@@ -142,7 +257,7 @@
             btnCancelar.BackColor = SystemColors.ControlLight;
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.Red;
-            btnCancelar.Location = new Point(375, 603);
+            btnCancelar.Location = new Point(591, 677);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(147, 51);
             btnCancelar.TabIndex = 15;
@@ -155,7 +270,7 @@
             label7.AutoSize = true;
             label7.FlatStyle = FlatStyle.Flat;
             label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(78, 540);
+            label7.Location = new Point(78, 538);
             label7.Name = "label7";
             label7.Size = new Size(175, 17);
             label7.TabIndex = 14;
@@ -164,7 +279,7 @@
             // txtPorcentajeGanancia
             // 
             txtPorcentajeGanancia.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPorcentajeGanancia.Location = new Point(259, 534);
+            txtPorcentajeGanancia.Location = new Point(259, 532);
             txtPorcentajeGanancia.Name = "txtPorcentajeGanancia";
             txtPorcentajeGanancia.Size = new Size(100, 23);
             txtPorcentajeGanancia.TabIndex = 13;
@@ -174,7 +289,7 @@
             label5.AutoSize = true;
             label5.FlatStyle = FlatStyle.Flat;
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(78, 502);
+            label5.Location = new Point(78, 500);
             label5.Name = "label5";
             label5.Size = new Size(273, 17);
             label5.TabIndex = 11;
@@ -184,7 +299,7 @@
             // 
             btnCalcular.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCalcular.ForeColor = SystemColors.HotTrack;
-            btnCalcular.Location = new Point(71, 603);
+            btnCalcular.Location = new Point(287, 677);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(170, 50);
             btnCalcular.TabIndex = 12;
@@ -195,7 +310,7 @@
             // txtPagoMozos
             // 
             txtPagoMozos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPagoMozos.Location = new Point(357, 496);
+            txtPagoMozos.Location = new Point(357, 494);
             txtPagoMozos.Name = "txtPagoMozos";
             txtPagoMozos.Size = new Size(100, 23);
             txtPagoMozos.TabIndex = 10;
@@ -205,7 +320,7 @@
             label4.AutoSize = true;
             label4.FlatStyle = FlatStyle.Flat;
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(78, 461);
+            label4.Location = new Point(78, 459);
             label4.Name = "label4";
             label4.Size = new Size(180, 17);
             label4.TabIndex = 9;
@@ -214,7 +329,7 @@
             // txtCantidadPersonas
             // 
             txtCantidadPersonas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtCantidadPersonas.Location = new Point(264, 455);
+            txtCantidadPersonas.Location = new Point(264, 453);
             txtCantidadPersonas.Name = "txtCantidadPersonas";
             txtCantidadPersonas.Size = new Size(100, 23);
             txtCantidadPersonas.TabIndex = 8;
@@ -224,7 +339,7 @@
             dgvComidas.BackgroundColor = SystemColors.ButtonHighlight;
             dgvComidas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvComidas.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, subtotal });
-            dgvComidas.Location = new Point(78, 262);
+            dgvComidas.Location = new Point(78, 246);
             dgvComidas.Name = "dgvComidas";
             dgvComidas.Size = new Size(444, 169);
             dgvComidas.TabIndex = 7;
@@ -303,7 +418,7 @@
             // btnvolver_inicio
             // 
             btnvolver_inicio.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnvolver_inicio.Location = new Point(594, 607);
+            btnvolver_inicio.Location = new Point(810, 681);
             btnvolver_inicio.Name = "btnvolver_inicio";
             btnvolver_inicio.Size = new Size(100, 46);
             btnvolver_inicio.TabIndex = 1;
@@ -314,7 +429,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "\"Plato Principal\" Pata muslo", "\"Plato Principal\" Pollo relleno", "\"Plato Principal\" Lomo al champignon", "\"Plato Principal\" Muslo relleno", "\"Plato Principal\" Asado", "Sandwiches triples de jamón y queso", "Sandwiches triples de pollo, huevo y morrón", "Sandwiches triples de ternera y queso", "Empanadas Carne", "Empanadas Pollo", "Empanadas fugazzeta", "Empanadas de choclo", "Pizzetas", "Quipes", "Tarteletas", "Pollo Picado" });
+            comboBox1.Items.AddRange(new object[] { "\"Recepción\" Pernil de cerdo", "\"Recepción\" Taco ", "\"Recepción\" Carne desmechada", "\"Recepción\" Mesa de fiambres", "\"Recepción\" Mesa de frutas", "\"Recepción\" Fondue de queso con albóndiga", "\"Recepción\" Cazuelas", "\"Plato Principal\" Pata muslo", "\"Plato Principal\" Pollo relleno", "\"Plato Principal\" Lomo al champignon", "\"Plato Principal\" Muslo relleno", "\"Plato Principal\" Asado", "Sandwiches triples de jamón y queso", "Sandwiches triples de pollo, huevo y morrón", "Sandwiches triples de ternera y queso", "Empanadas Carne", "Empanadas Pollo", "Empanadas fugazzeta", "Empanadas de choclo", "Pizzetas", "Quipes", "Tarteletas", "Pollo Picado" });
             comboBox1.Location = new Point(78, 64);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(265, 23);
@@ -412,7 +527,6 @@
             label6.Size = new Size(444, 65);
             label6.TabIndex = 0;
             label6.Text = "Presupuesto Total:";
-            label6.Click += label6_Click;
             // 
             // Form1
             // 
@@ -434,6 +548,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvComidas).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -477,5 +593,14 @@
         private Label label8;
         private TextBox txtPrecioUnidad;
         private TextBox txtCantidadPersona;
+        private Button btnAgregarNinos;
+        private Label lblCantidadNinos;
+        private TextBox textCantidadNinos;
+        private Label lblPrecioNinos;
+        private TextBox txtPrecioNinos;
+        private CheckBox cbNinos;
+        private Label lblNinosTotales;
+        private TextBox textNinosTotales;
+        private Panel panel3;
     }
 }
