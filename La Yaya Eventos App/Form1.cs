@@ -2,6 +2,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Text;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
@@ -31,7 +32,7 @@ namespace La_Yaya_Eventos_App
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //this.WindowState = FormWindowState.Maximized;
+            this.WindowState = FormWindowState.Maximized;
 
 
 
@@ -51,9 +52,14 @@ namespace La_Yaya_Eventos_App
             txtPorcentajeGanancia.KeyDown += textBox_KeyDown;
             txtPorcentajeGanancia.TextChanged += textBox_TextChanged;
 
+            txtPrecioNinos.KeyDown += textBox_KeyDown;
+            txtPrecioNinos.TextChanged += textBox_TextChanged;
 
+            textCantidadNinos.KeyDown += textBox_KeyDown;
+            textCantidadNinos.TextChanged += textBox_TextChanged;
 
-
+            textNinosTotales.KeyDown += textBox_KeyDown;
+            textNinosTotales.TextChanged += textBox_TextChanged;
         }
 
 
@@ -125,12 +131,51 @@ namespace La_Yaya_Eventos_App
             // Agregar una nueva fila al DataGridView
             dgvComidas.Rows.Add(tipoComida, precioPorUnidad, cantidadPorPersona, subtotal);
 
+            txtPrecioUnidad.Text = string.Empty;
+            txtCantidadPersona.Text = string.Empty;
+
+            comboBox1.SelectedIndex = -1;
         }
 
-        
-        private void btnCalcular_Click(object sender, EventArgs e)
+        private void btnAgregarNinos_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrEmpty(txtPrecioNinos.Text) ||
+                string.IsNullOrEmpty(textCantidadNinos.Text) ||
+                string.IsNullOrEmpty(textNinosTotales.Text))
+            {
+                // Mostrar mensaje de alerta si algún campo está vacío
+                MessageBox.Show("Por Favor Ingrese todos los datos del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detener la ejecución si faltan campos
+            }
+
+            decimal precioPorUnidadNinos = Convert.ToDecimal(txtPrecioNinos.Text);
+            int cantidadPorNinos = Convert.ToInt32(textCantidadNinos.Text);
+            cantidadNinos = Convert.ToInt32(textNinosTotales.Text);
+
+
+
+            // Obtener valores de los controles
+            string tipoComida = "Menu Niños";
+            decimal precioPorUnidad = Convert.ToDecimal(txtPrecioNinos.Text);
+
+            decimal subTotalNinos = precioPorUnidadNinos * cantidadPorNinos;
+            totalComidaNinos = cantidadNinos * subTotalNinos;
+
+            // Calcular el subtotal
+            decimal subtotal = precioPorUnidad * cantidadPorNinos;
+
+            // Agregar una nueva fila al DataGridView
+            dgvComidas.Rows.Add(tipoComida, precioPorUnidad, cantidadPorNinos, subtotal);
+
+            txtPrecioNinos.Text = string.Empty;
+            textCantidadNinos.Text = string.Empty;
+            textNinosTotales.Text = string.Empty;
+
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
             CenterPanel(panel2);
 
             // Validar que todos los campos necesarios estén llenos
@@ -139,36 +184,26 @@ namespace La_Yaya_Eventos_App
                 string.IsNullOrEmpty(txtPorcentajeGanancia.Text) ||
                 dgvComidas.Rows.Count == 0 || dgvComidas.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
             {
-                // Mostrar mensaje de alerta si algún campo está vacío
                 MessageBox.Show("Por favor, complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 panel1.Visible = true;
                 panel2.Visible = false;
-                return; // Detener la ejecución si faltan campos
+                return;
             }
 
-            // Ocultar el panel actual y mostrar el panel de resumen
             panel1.Visible = false;
             panel2.Visible = true;
 
-            // Obtener los valores ingresados por el usuario
             int cantidadPersonas = Convert.ToInt32(txtCantidadPersonas.Text);
             decimal pagoMozos = Convert.ToDecimal(txtPagoMozos.Text);
             decimal porcentajeGanancia = Convert.ToDecimal(txtPorcentajeGanancia.Text);
+            string textoResumen = "";
 
-            string textoNinos = $"y {cantidadNinos} niños";
-
-            // Calcular el costo total de la comida
-            decimal totalComida = 0;
-            
+            decimal totalComida = 0;  // Comida que se multiplicará por la cantidad de adultos
+            decimal totalComidaNinos = 0;  // Comida que se sumará directamente para niños
+            decimal totalRecepcion = 0;  // Comida que se sumará directamente para la recepción
             StringBuilder resumenComida = new StringBuilder();
-            if (cantidadNinos == 0)
-            {
-                resumenComida.AppendLine($"Resumen del Presupuesto: para {cantidadPersonas} personas.");
-                
-            }
-            else { resumenComida.AppendLine($"Resumen del Presupuesto: para {cantidadPersonas} personas {textoNinos}."); }
-                // Agregar un título al resumen
-               
+
+            resumenComida.AppendLine("Resumen del presupuesto.");
             resumenComida.AppendLine("========================\n");
 
             foreach (DataGridViewRow row in dgvComidas.Rows)
@@ -176,44 +211,57 @@ namespace La_Yaya_Eventos_App
                 if (row.Cells["Subtotal"].Value != null)
                 {
                     string tipoComida = row.Cells["Column1"].Value.ToString();
-                    decimal precioUnidad = Convert.ToDecimal(row.Cells["Column2"].Value);
-                    int cantidadPorPersona = Convert.ToInt32(row.Cells["Column3"].Value);
-                    decimal subTotalPorPersona = Convert.ToInt32(row.Cells["subtotal"].Value);
+                    decimal subTotalPorPersona = Convert.ToDecimal(row.Cells["Subtotal"].Value);
 
-                    // Calcular subtotal total por el número de personas
-                    decimal subtotalTotal = subTotalPorPersona * precioUnidad;
-                    totalComida = subTotalPorPersona + totalComida;                    
+                    // Si es "Menu Niños", sumarlo al total de comida para niños
+                    if (tipoComida == "Menu Niños")
+                    {
+                        totalComidaNinos += subTotalPorPersona;
+                    }
+                    // Si es un plato de "recepción", sumarlo al total de recepción
+                    else if (tipoComida.StartsWith("*Recepción*", StringComparison.OrdinalIgnoreCase))
+                    {
+                        totalRecepcion += subTotalPorPersona;
+                    }
+                    // De lo contrario, es comida normal, sumar al total de comida
+                    else
+                    {
+                        totalComida += subTotalPorPersona;
+                    }
 
-                    // Formatear la salida de la comida
+                    // Agregar el tipo de comida al resumen
                     resumenComida.AppendLine($"{tipoComida}.");
                 }
             }
 
-            
-            totalComida = (totalComida - totalComidaNinos) * cantidadPersonas ;
+            // Calcular el total solo para la comida que se debe multiplicar por el número de personas
+            decimal totalComidaMultiplicada = totalComida * cantidadPersonas;
 
-            ganancia = (totalComida + totalComidaNinos) * (porcentajeGanancia / 100);
+            // Calcular el total para la comida de los niños (se suma directamente sin multiplicar)
+            decimal totalComidaNinosFinal = totalComidaNinos * cantidadNinos;
 
-            // Calcular presupuesto total
-            decimal totalPresupuesto = totalComida + pagoMozos + ganancia + totalComidaNinos;
+            // Calcular la ganancia y el presupuesto total
+            decimal ganancia = (totalComidaMultiplicada + totalComidaNinosFinal + totalRecepcion) * (porcentajeGanancia / 100);
+            decimal totalPresupuesto = totalComidaMultiplicada + totalComidaNinosFinal + totalRecepcion + pagoMozos + ganancia;
 
-            // Guardar la ganancia en una variable separada
-
-            // Formatear la visualización del total (sin incluir ganancia)
+            // Mostrar los resultados
             resumenComida.AppendLine("\n========================");
-            resumenComida.AppendLine($"Total Comida: ${totalComida}");
             resumenComida.AppendLine($"Total Presupuesto: ${totalPresupuesto}");
-            resumenComida.AppendLine($"el total comida niños es: ${totalComidaNinos}");
-            resumenComida.AppendLine($"Total de la comida de adultos: ${totalComida}");
-            // Nota sobre lo que incluye el presupuesto
-            resumenComida.AppendLine("\n* El presupuesto incluye mozos y ayudantes de cocina.");
 
-            // Mostrar el resumen en un Label o TextBox
+            if (cantidadNinos == 0)
+            {
+                textoResumen = $"{cantidadPersonas} adultos";
+            }
+            else if (cantidadNinos > 0)
+            {
+                textoResumen = $"{cantidadPersonas} adultos, {cantidadNinos} niños";
+            }
+
+
+            resumenComida.AppendLine($"\n* El presupuesto incluye comida para {textoResumen}, mozos y ayudantes de cocina.*");
+
             txtResumenPresupuesto.Text = resumenComida.ToString();
-
-            // Mostrar ganancia en un label aparte, opcionalmente
             lblGanancia.Text = $"Ganancia estimada: ${ganancia}";
-
         }
 
 
@@ -316,15 +364,12 @@ namespace La_Yaya_Eventos_App
 
             cbNinos.Checked = false;
 
-            // Restablecer la lista desplegable de tipos de comida (ComboBox)
-            comboBox1.Text = "Seleccione una comida"; // Deja sin seleccionar nada
-
             // Limpiar la lista de comidas agregadas (DataGridView o ListView)
             dgvComidas.Rows.Clear(); // Si estás usando un DataGridView
 
             // Limpiar otros campos o controles según sea necesario
-            lblTotal.Text = "Total: $0"; // Ejemplo de etiqueta que muestra el total
-            lblGanancia.Text = "Total: $0";
+            //lblTotal.Text = "Total: $0"; ESTO NO ESTOY USANDO
+            lblGanancia.Text = "";
             MessageBox.Show("Los campos han sido limpiados para un nuevo presupuesto.");
             panel1.Visible = true;
             panel2.Visible = false;
@@ -333,9 +378,6 @@ namespace La_Yaya_Eventos_App
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            txtPrecioUnidad.Text = string.Empty;
-            txtCantidadPersona.Text = string.Empty;
-
             txtCantidadPersonas.Text = string.Empty;
             txtPagoMozos.Text = string.Empty;
             txtPorcentajeGanancia.Text = string.Empty;
@@ -348,15 +390,13 @@ namespace La_Yaya_Eventos_App
 
             cbNinos.Checked = false;
 
-
-            comboBox1.Text = "Seleccione una comida";
+            txtPrecioUnidad.Text = string.Empty;
+            txtCantidadPersona.Text = string.Empty;
 
 
             dgvComidas.Rows.Clear();
 
-
-            lblTotal.Text = "Total: $0";
-            lblGanancia.Text = "Total: $0";
+            lblGanancia.Text = "";
 
         }
 
@@ -411,35 +451,6 @@ namespace La_Yaya_Eventos_App
             panel3.Visible = cbNinos.Checked;
 
         }
-        private void btnAgregarNinos_Click(object sender, EventArgs e)
-        {
-
-            if (string.IsNullOrEmpty(txtPrecioNinos.Text) ||
-                string.IsNullOrEmpty(textCantidadNinos.Text))
-            {
-                // Mostrar mensaje de alerta si algún campo está vacío
-                MessageBox.Show("Por Favor Ingrese todos los datos del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Detener la ejecución si faltan campos
-            }
-
-            decimal precioPorUnidadNinos = Convert.ToDecimal(txtPrecioNinos.Text);
-            int cantidadPorNinos = Convert.ToInt32(textCantidadNinos.Text);
-            cantidadNinos = Convert.ToInt32(textNinosTotales.Text);
-
-
-
-            // Obtener valores de los controles
-            string tipoComida = "Menu Niños";
-            decimal precioPorUnidad = Convert.ToDecimal(txtPrecioNinos.Text);
-
-            decimal subTotalNinos = precioPorUnidadNinos * cantidadPorNinos;
-            totalComidaNinos = cantidadNinos * subTotalNinos;
-
-            // Calcular el subtotal
-            decimal subtotal = precioPorUnidad * cantidadPorNinos;
-
-            // Agregar una nueva fila al DataGridView
-            dgvComidas.Rows.Add(tipoComida, precioPorUnidad, cantidadPorNinos, subtotal);
-        }
+        
     }
 }

@@ -67,7 +67,6 @@
             lblGanancia = new Label();
             txtResumenPresupuesto = new Label();
             btnNuevoPresupuesto = new Button();
-            lblTotal = new Label();
             btnImprimir = new Button();
             btnGuardarImg = new Button();
             label6 = new Label();
@@ -133,7 +132,7 @@
             panel1.Controls.Add(btnvolver_inicio);
             panel1.Controls.Add(comboBox1);
             panel1.ForeColor = SystemColors.ControlText;
-            panel1.Location = new Point(53, 12);
+            panel1.Location = new Point(81, 31);
             panel1.Name = "panel1";
             panel1.Size = new Size(1150, 861);
             panel1.TabIndex = 3;
@@ -246,7 +245,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(78, 44);
+            label8.Location = new Point(78, 68);
             label8.Name = "label8";
             label8.Size = new Size(155, 17);
             label8.TabIndex = 16;
@@ -257,7 +256,7 @@
             btnCancelar.BackColor = SystemColors.ButtonHighlight;
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = Color.Red;
-            btnCancelar.Location = new Point(591, 677);
+            btnCancelar.Location = new Point(555, 759);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(147, 51);
             btnCancelar.TabIndex = 15;
@@ -270,7 +269,7 @@
             label7.AutoSize = true;
             label7.FlatStyle = FlatStyle.Flat;
             label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(78, 538);
+            label7.Location = new Point(78, 713);
             label7.Name = "label7";
             label7.Size = new Size(175, 17);
             label7.TabIndex = 14;
@@ -279,7 +278,7 @@
             // txtPorcentajeGanancia
             // 
             txtPorcentajeGanancia.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPorcentajeGanancia.Location = new Point(259, 532);
+            txtPorcentajeGanancia.Location = new Point(259, 707);
             txtPorcentajeGanancia.Name = "txtPorcentajeGanancia";
             txtPorcentajeGanancia.Size = new Size(100, 23);
             txtPorcentajeGanancia.TabIndex = 13;
@@ -289,7 +288,7 @@
             label5.AutoSize = true;
             label5.FlatStyle = FlatStyle.Flat;
             label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(78, 500);
+            label5.Location = new Point(78, 675);
             label5.Name = "label5";
             label5.Size = new Size(273, 17);
             label5.TabIndex = 11;
@@ -299,7 +298,7 @@
             // 
             btnCalcular.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCalcular.ForeColor = SystemColors.HotTrack;
-            btnCalcular.Location = new Point(287, 677);
+            btnCalcular.Location = new Point(251, 759);
             btnCalcular.Name = "btnCalcular";
             btnCalcular.Size = new Size(170, 50);
             btnCalcular.TabIndex = 12;
@@ -310,7 +309,7 @@
             // txtPagoMozos
             // 
             txtPagoMozos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPagoMozos.Location = new Point(357, 494);
+            txtPagoMozos.Location = new Point(357, 669);
             txtPagoMozos.Name = "txtPagoMozos";
             txtPagoMozos.Size = new Size(100, 23);
             txtPagoMozos.TabIndex = 10;
@@ -320,16 +319,16 @@
             label4.AutoSize = true;
             label4.FlatStyle = FlatStyle.Flat;
             label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(78, 459);
+            label4.Location = new Point(78, 634);
             label4.Name = "label4";
-            label4.Size = new Size(180, 17);
+            label4.Size = new Size(138, 17);
             label4.TabIndex = 9;
-            label4.Text = "Cantidad Total de Personas:";
+            label4.Text = "Cantidad de Adultos:";
             // 
             // txtCantidadPersonas
             // 
             txtCantidadPersonas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtCantidadPersonas.Location = new Point(264, 453);
+            txtCantidadPersonas.Location = new Point(222, 628);
             txtCantidadPersonas.Name = "txtCantidadPersonas";
             txtCantidadPersonas.Size = new Size(100, 23);
             txtCantidadPersonas.TabIndex = 8;
@@ -341,7 +340,7 @@
             dgvComidas.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, subtotal });
             dgvComidas.Location = new Point(78, 246);
             dgvComidas.Name = "dgvComidas";
-            dgvComidas.Size = new Size(444, 169);
+            dgvComidas.Size = new Size(443, 326);
             dgvComidas.TabIndex = 7;
             // 
             // Column1
@@ -418,7 +417,7 @@
             // btnvolver_inicio
             // 
             btnvolver_inicio.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnvolver_inicio.Location = new Point(810, 681);
+            btnvolver_inicio.Location = new Point(774, 763);
             btnvolver_inicio.Name = "btnvolver_inicio";
             btnvolver_inicio.Size = new Size(100, 46);
             btnvolver_inicio.TabIndex = 1;
@@ -429,8 +428,8 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "\"Recepción\" Pernil de cerdo", "\"Recepción\" Taco ", "\"Recepción\" Carne desmechada", "\"Recepción\" Mesa de fiambres", "\"Recepción\" Mesa de frutas", "\"Recepción\" Fondue de queso con albóndiga", "\"Recepción\" Cazuelas", "\"Plato Principal\" Pata muslo", "\"Plato Principal\" Pollo relleno", "\"Plato Principal\" Lomo al champignon", "\"Plato Principal\" Muslo relleno", "\"Plato Principal\" Asado", "Sandwiches triples de jamón y queso", "Sandwiches triples de pollo, huevo y morrón", "Sandwiches triples de ternera y queso", "Empanadas Carne", "Empanadas Pollo", "Empanadas fugazzeta", "Empanadas de choclo", "Pizzetas", "Quipes", "Tarteletas", "Pollo Picado" });
-            comboBox1.Location = new Point(78, 64);
+            comboBox1.Items.AddRange(new object[] { "*Recepción* Pernil de cerdo", "*Recepción* Taco ", "*Recepción* Carne desmechada", "*Recepción* Mesa de fiambres", "*Recepción* Mesa de frutas", "*Recepción* Fondue de queso con albóndiga", "*Recepción* Cazuelas", "\"Plato Principal\" Pata muslo", "\"Plato Principal\" Pollo relleno", "\"Plato Principal\" Lomo al champignon", "\"Plato Principal\" Muslo relleno", "\"Plato Principal\" Asado", "Sandwiches triples de jamón y queso", "Sandwiches triples de pollo, huevo y morrón", "Sandwiches triples de ternera y queso", "Empanadas Carne", "Empanadas Pollo", "Empanadas fugazzeta", "Empanadas de choclo", "Pizzetas", "Quipes", "Tarteletas", "Pollo Picado" });
+            comboBox1.Location = new Point(239, 62);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(265, 23);
             comboBox1.TabIndex = 0;
@@ -443,13 +442,12 @@
             panel2.Controls.Add(lblGanancia);
             panel2.Controls.Add(txtResumenPresupuesto);
             panel2.Controls.Add(btnNuevoPresupuesto);
-            panel2.Controls.Add(lblTotal);
             panel2.Controls.Add(btnImprimir);
             panel2.Controls.Add(btnGuardarImg);
             panel2.Controls.Add(label6);
-            panel2.Location = new Point(53, 12);
+            panel2.Location = new Point(84, 31);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1150, 1001);
+            panel2.Size = new Size(1150, 1396);
             panel2.TabIndex = 13;
             panel2.Visible = false;
             // 
@@ -457,7 +455,7 @@
             // 
             lblGanancia.AutoSize = true;
             lblGanancia.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGanancia.Location = new Point(51, 688);
+            lblGanancia.Location = new Point(51, 870);
             lblGanancia.Name = "lblGanancia";
             lblGanancia.Size = new Size(0, 30);
             lblGanancia.TabIndex = 9;
@@ -476,7 +474,7 @@
             btnNuevoPresupuesto.BackColor = SystemColors.ButtonFace;
             btnNuevoPresupuesto.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNuevoPresupuesto.ForeColor = SystemColors.MenuHighlight;
-            btnNuevoPresupuesto.Location = new Point(438, 780);
+            btnNuevoPresupuesto.Location = new Point(440, 929);
             btnNuevoPresupuesto.Name = "btnNuevoPresupuesto";
             btnNuevoPresupuesto.Size = new Size(207, 46);
             btnNuevoPresupuesto.TabIndex = 7;
@@ -484,20 +482,11 @@
             btnNuevoPresupuesto.UseVisualStyleBackColor = false;
             btnNuevoPresupuesto.Click += btnNuevoPresupuesto_Click;
             // 
-            // lblTotal
-            // 
-            lblTotal.AutoSize = true;
-            lblTotal.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotal.Location = new Point(51, 531);
-            lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(0, 30);
-            lblTotal.TabIndex = 5;
-            // 
             // btnImprimir
             // 
             btnImprimir.BackColor = SystemColors.ButtonFace;
             btnImprimir.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnImprimir.Location = new Point(696, 780);
+            btnImprimir.Location = new Point(698, 929);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(150, 46);
             btnImprimir.TabIndex = 4;
@@ -510,7 +499,7 @@
             btnGuardarImg.BackColor = SystemColors.ButtonFace;
             btnGuardarImg.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGuardarImg.ForeColor = SystemColors.InfoText;
-            btnGuardarImg.Location = new Point(261, 780);
+            btnGuardarImg.Location = new Point(263, 929);
             btnGuardarImg.Name = "btnGuardarImg";
             btnGuardarImg.Size = new Size(118, 46);
             btnGuardarImg.TabIndex = 3;
@@ -532,6 +521,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             AutoSize = true;
             BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(1284, 861);
@@ -584,7 +574,6 @@
         private Button btnGuardarImg;
         private Label label7;
         private TextBox txtPorcentajeGanancia;
-        private Label lblTotal;
         private DataGridViewTextBoxColumn subtotal;
         private Button btnNuevoPresupuesto;
         private Label txtResumenPresupuesto;
