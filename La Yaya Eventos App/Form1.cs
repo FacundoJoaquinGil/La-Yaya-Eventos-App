@@ -25,6 +25,8 @@ namespace La_Yaya_Eventos_App
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+
 
             this.Resize += new EventHandler(Form1_Resize_1); // Conectar el evento
 
@@ -49,8 +51,8 @@ namespace La_Yaya_Eventos_App
             txtPagoMozos.KeyDown += textBox_KeyDown;
             txtPagoMozos.TextChanged += textBox_TextChanged;
 
-            txtPorcentajeGanancia.KeyDown += textBox_KeyDown;
-            txtPorcentajeGanancia.TextChanged += textBox_TextChanged;
+            txtGananciaxPersona.KeyDown += textBox_KeyDown;
+            txtGananciaxPersona.TextChanged += textBox_TextChanged;
 
             txtPrecioNinos.KeyDown += textBox_KeyDown;
             txtPrecioNinos.TextChanged += textBox_TextChanged;
@@ -67,7 +69,7 @@ namespace La_Yaya_Eventos_App
         private void btnCrearPresupuesto_Click_1(object sender, EventArgs e)
         {
             panel1.Visible = true;
-
+            panel2.Visible = true;
             label1.Visible = false;
             pictureBox1.Visible = false;
             btnCrearPresupuesto.Visible = false;
@@ -79,7 +81,7 @@ namespace La_Yaya_Eventos_App
         private void btnvolver_inicio_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
-
+            panel2.Visible = false;
 
             label1.Visible = true;
             pictureBox1.Visible = true;
@@ -139,39 +141,33 @@ namespace La_Yaya_Eventos_App
 
         private void btnAgregarNinos_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrEmpty(txtPrecioNinos.Text) ||
                 string.IsNullOrEmpty(textCantidadNinos.Text) ||
                 string.IsNullOrEmpty(textNinosTotales.Text))
             {
-                // Mostrar mensaje de alerta si algún campo está vacío
-                MessageBox.Show("Por Favor Ingrese todos los datos del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Detener la ejecución si faltan campos
+                MessageBox.Show("Por favor, ingrese todos los datos del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             decimal precioPorUnidadNinos = Convert.ToDecimal(txtPrecioNinos.Text);
             int cantidadPorNinos = Convert.ToInt32(textCantidadNinos.Text);
-            cantidadNinos = Convert.ToInt32(textNinosTotales.Text);
 
-
-
-            // Obtener valores de los controles
-            string tipoComida = "Menu Niños";
-            decimal precioPorUnidad = Convert.ToDecimal(txtPrecioNinos.Text);
+            // Guardar el valor en una variable global si es necesario
+            cantidadNinos = Convert.ToInt32(textNinosTotales.Text);  // Asegúrate que cantidadNinos sea una variable de clase
 
             decimal subTotalNinos = precioPorUnidadNinos * cantidadPorNinos;
             totalComidaNinos = cantidadNinos * subTotalNinos;
 
-            // Calcular el subtotal
-            decimal subtotal = precioPorUnidad * cantidadPorNinos;
+            string tipoComida = "Menu Niños";
+            decimal subtotal = subTotalNinos;
 
-            // Agregar una nueva fila al DataGridView
-            dgvComidas.Rows.Add(tipoComida, precioPorUnidad, cantidadPorNinos, subtotal);
+            // Agregar fila al DataGridView
+            dgvComidas.Rows.Add(tipoComida, precioPorUnidadNinos, cantidadPorNinos, subtotal);
 
+            // Limpiar los campos después de agregar
             txtPrecioNinos.Text = string.Empty;
             textCantidadNinos.Text = string.Empty;
             textNinosTotales.Text = string.Empty;
-
         }
 
         private void btnCalcular_Click(object sender, EventArgs e)
@@ -181,12 +177,12 @@ namespace La_Yaya_Eventos_App
             // Validar que todos los campos necesarios estén llenos
             if (string.IsNullOrEmpty(txtCantidadPersonas.Text) ||
                 string.IsNullOrEmpty(txtPagoMozos.Text) ||
-                string.IsNullOrEmpty(txtPorcentajeGanancia.Text) ||
+                string.IsNullOrEmpty(txtGananciaxPersona.Text) ||
                 dgvComidas.Rows.Count == 0 || dgvComidas.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
             {
                 MessageBox.Show("Por favor, complete todos los campos antes de continuar.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 panel1.Visible = true;
-                panel2.Visible = false;
+                panel2.Visible = true;
                 return;
             }
 
@@ -195,12 +191,13 @@ namespace La_Yaya_Eventos_App
 
             int cantidadPersonas = Convert.ToInt32(txtCantidadPersonas.Text);
             decimal pagoMozos = Convert.ToDecimal(txtPagoMozos.Text);
-            decimal porcentajeGanancia = Convert.ToDecimal(txtPorcentajeGanancia.Text);
+            decimal gananciaxPersona = Convert.ToDecimal(txtGananciaxPersona.Text);
+           
             string textoResumen = "";
+
 
             decimal totalComida = 0;  // Comida que se multiplicará por la cantidad de adultos
             decimal totalComidaNinos = 0;  // Comida que se sumará directamente para niños
-            decimal totalRecepcion = 0;  // Comida que se sumará directamente para la recepción
             StringBuilder resumenComida = new StringBuilder();
 
             resumenComida.AppendLine("Resumen del presupuesto.");
@@ -218,12 +215,7 @@ namespace La_Yaya_Eventos_App
                     {
                         totalComidaNinos += subTotalPorPersona;
                     }
-                    // Si es un plato de "recepción", sumarlo al total de recepción
-                    else if (tipoComida.StartsWith("*Recepción*", StringComparison.OrdinalIgnoreCase))
-                    {
-                        totalRecepcion += subTotalPorPersona;
-                    }
-                    // De lo contrario, es comida normal, sumar al total de comida
+                    // De lo contrario, es comida normal, sumarla al total de comida
                     else
                     {
                         totalComida += subTotalPorPersona;
@@ -237,16 +229,33 @@ namespace La_Yaya_Eventos_App
             // Calcular el total solo para la comida que se debe multiplicar por el número de personas
             decimal totalComidaMultiplicada = totalComida * cantidadPersonas;
 
+            
+
             // Calcular el total para la comida de los niños (se suma directamente sin multiplicar)
             decimal totalComidaNinosFinal = totalComidaNinos * cantidadNinos;
-
+            int cantidadTotalPersonas = cantidadPersonas + cantidadNinos;
             // Calcular la ganancia y el presupuesto total
-            decimal ganancia = (totalComidaMultiplicada + totalComidaNinosFinal + totalRecepcion) * (porcentajeGanancia / 100);
-            decimal totalPresupuesto = totalComidaMultiplicada + totalComidaNinosFinal + totalRecepcion + pagoMozos + ganancia;
+            decimal ganancia = Math.Round((cantidadPersonas + cantidadNinos) * gananciaxPersona, 2);
+            decimal precioPorAdulto = Math.Round((totalComidaMultiplicada + pagoMozos + ganancia) / cantidadPersonas, 2);
+            decimal totalPresupuesto = Math.Round(totalComidaMultiplicada + totalComidaNinosFinal + pagoMozos + ganancia, 2);
+
+            decimal precioPorNino = 0;
+            if (cantidadNinos > 0)
+            {
+                precioPorNino = Math.Round(totalComidaNinosFinal / cantidadNinos, 2);
+            }
+
+            if (cantidadTotalPersonas > 0)
+            {
+                decimal precioPorPersona = Math.Round(totalPresupuesto / cantidadTotalPersonas, 2);
+            }
+
 
             // Mostrar los resultados
             resumenComida.AppendLine("\n========================");
+            resumenComida.AppendLine($"Presupuesto para {cantidadTotalPersonas} personas");
             resumenComida.AppendLine($"Total Presupuesto: ${totalPresupuesto}");
+            
 
             if (cantidadNinos == 0)
             {
@@ -257,12 +266,18 @@ namespace La_Yaya_Eventos_App
                 textoResumen = $"{cantidadPersonas} adultos, {cantidadNinos} niños";
             }
 
-
             resumenComida.AppendLine($"\n* El presupuesto incluye comida para {textoResumen}, mozos y ayudantes de cocina.*");
+            resumenComida.AppendLine($"Precio por adulto: ${precioPorAdulto}");
+
+            if (totalComidaNinosFinal > 0)
+            {
+                resumenComida.AppendLine($"Precio por niño: ${precioPorNino}");
+            }
 
             txtResumenPresupuesto.Text = resumenComida.ToString();
             lblGanancia.Text = $"Ganancia estimada: ${ganancia}";
         }
+
 
 
         private void btnGuardarImg_Click(object sender, EventArgs e)
@@ -349,12 +364,14 @@ namespace La_Yaya_Eventos_App
 
         private void btnNuevoPresupuesto_Click(object sender, EventArgs e)
         {
+            panel1.Visible = true;
+            panel2.Visible = true;
             txtPrecioUnidad.Text = string.Empty; //cambiarrrr
             txtCantidadPersona.Text = string.Empty; //cambiarrrr
             // Limpiar los campos de texto
             txtCantidadPersonas.Text = string.Empty;
             txtPagoMozos.Text = string.Empty;
-            txtPorcentajeGanancia.Text = string.Empty;
+            txtGananciaxPersona.Text = string.Empty;
 
             txtPrecioNinos.Text = string.Empty;
             textCantidadNinos.Text = string.Empty;
@@ -371,8 +388,7 @@ namespace La_Yaya_Eventos_App
             //lblTotal.Text = "Total: $0"; ESTO NO ESTOY USANDO
             lblGanancia.Text = "";
             MessageBox.Show("Los campos han sido limpiados para un nuevo presupuesto.");
-            panel1.Visible = true;
-            panel2.Visible = false;
+
 
         }
 
@@ -380,7 +396,7 @@ namespace La_Yaya_Eventos_App
         {
             txtCantidadPersonas.Text = string.Empty;
             txtPagoMozos.Text = string.Empty;
-            txtPorcentajeGanancia.Text = string.Empty;
+            txtGananciaxPersona.Text = string.Empty;
 
             txtPrecioNinos.Text = string.Empty;
             textCantidadNinos.Text = string.Empty;
@@ -451,6 +467,5 @@ namespace La_Yaya_Eventos_App
             panel3.Visible = cbNinos.Checked;
 
         }
-        
     }
 }
