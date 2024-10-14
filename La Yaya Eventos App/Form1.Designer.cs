@@ -151,7 +151,7 @@
             panel3.Controls.Add(lblCantidadNinos);
             panel3.Location = new Point(784, 15);
             panel3.Name = "panel3";
-            panel3.Size = new Size(358, 181);
+            panel3.Size = new Size(371, 181);
             panel3.TabIndex = 25;
             panel3.Visible = false;
             // 
@@ -175,7 +175,7 @@
             btnAgregarNinos.Location = new Point(25, 130);
             btnAgregarNinos.Name = "btnAgregarNinos";
             btnAgregarNinos.RightToLeft = RightToLeft.No;
-            btnAgregarNinos.Size = new Size(206, 40);
+            btnAgregarNinos.Size = new Size(218, 51);
             btnAgregarNinos.TabIndex = 17;
             btnAgregarNinos.Text = "Agregar Menu Niños a la Lista";
             btnAgregarNinos.UseVisualStyleBackColor = false;
@@ -214,7 +214,7 @@
             // textCantidadNinos
             // 
             textCantidadNinos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            textCantidadNinos.Location = new Point(255, 43);
+            textCantidadNinos.Location = new Point(268, 43);
             textCantidadNinos.Name = "textCantidadNinos";
             textCantidadNinos.RightToLeft = RightToLeft.No;
             textCantidadNinos.Size = new Size(100, 23);
@@ -411,7 +411,7 @@
             // txtPrecioUnidad
             // 
             txtPrecioUnidad.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPrecioUnidad.Location = new Point(282, 58);
+            txtPrecioUnidad.Location = new Point(285, 63);
             txtPrecioUnidad.Name = "txtPrecioUnidad";
             txtPrecioUnidad.Size = new Size(100, 23);
             txtPrecioUnidad.TabIndex = 2;
@@ -460,7 +460,7 @@
             // 
             lblGanancia.AutoSize = true;
             lblGanancia.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGanancia.Location = new Point(725, 29);
+            lblGanancia.Location = new Point(807, 29);
             lblGanancia.Name = "lblGanancia";
             lblGanancia.Size = new Size(0, 30);
             lblGanancia.TabIndex = 9;
@@ -469,7 +469,7 @@
             // 
             txtResumenPresupuesto.AutoSize = true;
             txtResumenPresupuesto.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtResumenPresupuesto.Location = new Point(16, 89);
+            txtResumenPresupuesto.Location = new Point(12, 58);
             txtResumenPresupuesto.Name = "txtResumenPresupuesto";
             txtResumenPresupuesto.Size = new Size(0, 30);
             txtResumenPresupuesto.TabIndex = 8;
@@ -479,11 +479,11 @@
             btnNuevoPresupuesto.BackColor = SystemColors.ButtonFace;
             btnNuevoPresupuesto.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNuevoPresupuesto.ForeColor = SystemColors.MenuHighlight;
-            btnNuevoPresupuesto.Location = new Point(910, 610);
+            btnNuevoPresupuesto.Location = new Point(1054, 121);
             btnNuevoPresupuesto.Name = "btnNuevoPresupuesto";
-            btnNuevoPresupuesto.Size = new Size(207, 46);
+            btnNuevoPresupuesto.Size = new Size(150, 46);
             btnNuevoPresupuesto.TabIndex = 7;
-            btnNuevoPresupuesto.Text = "Generar Nuevo Presupuesto";
+            btnNuevoPresupuesto.Text = "Nuevo Presupuesto";
             btnNuevoPresupuesto.UseVisualStyleBackColor = false;
             btnNuevoPresupuesto.Click += btnNuevoPresupuesto_Click;
             // 
@@ -491,7 +491,7 @@
             // 
             btnImprimir.BackColor = SystemColors.ButtonFace;
             btnImprimir.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnImprimir.Location = new Point(967, 547);
+            btnImprimir.Location = new Point(1054, 58);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(150, 46);
             btnImprimir.TabIndex = 4;
@@ -504,7 +504,7 @@
             btnGuardarImg.BackColor = SystemColors.ButtonFace;
             btnGuardarImg.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGuardarImg.ForeColor = SystemColors.InfoText;
-            btnGuardarImg.Location = new Point(999, 668);
+            btnGuardarImg.Location = new Point(1086, 179);
             btnGuardarImg.Name = "btnGuardarImg";
             btnGuardarImg.Size = new Size(118, 46);
             btnGuardarImg.TabIndex = 3;
@@ -515,10 +515,10 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(263, 6);
+            label6.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(265, 0);
             label6.Name = "label6";
-            label6.Size = new Size(444, 65);
+            label6.Size = new Size(297, 45);
             label6.TabIndex = 0;
             label6.Text = "Presupuesto Total:";
             // 

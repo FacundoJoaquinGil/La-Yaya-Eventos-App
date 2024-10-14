@@ -287,12 +287,13 @@ namespace La_Yaya_Eventos_App
             btnNuevoPresupuesto.Visible = false;
             btnImprimir.Visible = false;
 
+            // Crear un bitmap con el tamaño del Label (txtResumenPresupuesto)
+            int labelWidth = txtResumenPresupuesto.Width;
+            int labelHeight = txtResumenPresupuesto.Height;
+            Bitmap bmp = new Bitmap(labelWidth, labelHeight);
 
-            // Crear un bitmap con el tamaño del panel2
-            Bitmap bmp = new Bitmap(panel2.Width, panel2.Height);
-
-            // Dibujar el contenido del panel2 en el bitmap
-            panel2.DrawToBitmap(bmp, new Rectangle(0, 0, panel2.Width, panel2.Height));
+            // Dibujar el contenido del Label en el bitmap
+            txtResumenPresupuesto.DrawToBitmap(bmp, new Rectangle(0, 0, labelWidth, labelHeight));
 
             // Guardar la imagen en un archivo
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -302,12 +303,11 @@ namespace La_Yaya_Eventos_App
                 bmp.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
             }
 
-            // Volver a mostrar botones y label
+            // Volver a mostrar los controles ocultos
             lblGanancia.Visible = true;
             btnGuardarImg.Visible = true;
             btnNuevoPresupuesto.Visible = true;
             btnImprimir.Visible = true;
-
         }
 
 
@@ -318,11 +318,13 @@ namespace La_Yaya_Eventos_App
             btnNuevoPresupuesto.Visible = false;
             btnImprimir.Visible = false;
 
-            // Crear un bitmap con el tamaño del panel2
-            bmp = new Bitmap(panel2.Width, panel2.Height);
+            // Crear un bitmap con el tamaño del Label (txtResumenPresupuesto)
+            int labelWidth = txtResumenPresupuesto.Width;
+            int labelHeight = txtResumenPresupuesto.Height;
+            bmp = new Bitmap(labelWidth, labelHeight);
 
-            // Dibujar el contenido del panel2 en el bitmap
-            panel2.DrawToBitmap(bmp, new Rectangle(0, 0, panel2.Width, panel2.Height));
+            // Dibujar el contenido del Label en el bitmap
+            txtResumenPresupuesto.DrawToBitmap(bmp, new Rectangle(0, 0, labelWidth, labelHeight));
 
             // Configurar el evento para la impresión
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
@@ -345,6 +347,9 @@ namespace La_Yaya_Eventos_App
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
+            // Configurar la resolución del bitmap según la resolución de la impresora
+            bmp.SetResolution(e.Graphics.DpiX, e.Graphics.DpiY);
+
             // Obtener el tamaño de la imagen y el tamaño del área de impresión
             int imageWidth = bmp.Width;
             int imageHeight = bmp.Height;
@@ -361,6 +366,7 @@ namespace La_Yaya_Eventos_App
             // Dibujar la imagen escalada y centrada en la página
             e.Graphics.DrawImage(bmp, x, y, imageWidth * scale, imageHeight * scale);
         }
+
 
         private void btnNuevoPresupuesto_Click(object sender, EventArgs e)
         {
