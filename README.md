@@ -1,8 +1,9 @@
 <h2>La Yaya Eventos App 📝</h2>
 
-<p>Hoy estoy feliz de compartir mi primera venta freelancer la cual llamamos "la Yaya Eventos App" es una aplicación de Windows Forms creada para ayudar a los organizadores de eventos a generar presupuestos detallados. Los presupuestos incluyen los costos de la comida, pago de mozos, ayudantes de cocina y otros gastos asociados. La aplicación permite generar, calcular y visualizar un presupuesto que incluye tanto a adultos como a niños.</p>
+<p>Hoy estoy feliz de compartir mi primera venta freelancer la cual llamamos "la Yaya Eventos App" una aplicación creada para ayudar a los organizadores de eventos a generar presupuestos detallados. Los presupuestos incluyen los costos de la comida, pago de mozos, ayudantes de cocina y otros gastos asociados. La aplicación permite generar, calcular y visualizar un presupuesto que incluye tanto a adultos como a niños.</p>
 
-![image](https://github.com/user-attachments/assets/c571e399-3f7d-4cf6-8d5e-ae3848b0505c)
+![image](https://github.com/user-attachments/assets/4b079a94-29f9-41f6-8b79-f1d5f94d7d49)
+
 
 <h4>Tecnologias Utilizadas 📑</h4>
 
