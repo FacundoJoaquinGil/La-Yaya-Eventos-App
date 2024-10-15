@@ -1,11 +1,10 @@
-using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Text;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+//using System.Windows.Forms;
+//using static System.Net.Mime.MediaTypeNames;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 
 namespace La_Yaya_Eventos_App
@@ -19,7 +18,7 @@ namespace La_Yaya_Eventos_App
         int cantidadNinos = 0;
         public Form1()
         {
-            //private List<Comida> comidas = new List<Comida>();
+            
             InitializeComponent();
 
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -28,7 +27,7 @@ namespace La_Yaya_Eventos_App
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
 
-            this.Resize += new EventHandler(Form1_Resize_1); // Conectar el evento
+            this.Resize += new EventHandler(Form1_Resize_1); 
 
         }
 
@@ -101,11 +100,11 @@ namespace La_Yaya_Eventos_App
         {
             System.Windows.Forms.TextBox textBox = sender as System.Windows.Forms.TextBox;
 
-            // Validar si el texto contiene caracteres no numéricos y eliminarlos
+            
             if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, @"^\d*$"))
             {
                 textBox.Text = System.Text.RegularExpressions.Regex.Replace(textBox.Text, @"[^\d]", "");
-                textBox.SelectionStart = textBox.Text.Length; // Mover el cursor al final
+                textBox.SelectionStart = textBox.Text.Length; 
             }
         }
 
@@ -115,22 +114,22 @@ namespace La_Yaya_Eventos_App
                 string.IsNullOrEmpty(txtPrecioUnidad.Text) ||
                 string.IsNullOrEmpty(txtCantidadPersona.Text))
             {
-                // Mostrar mensaje de alerta si algún campo está vacío
+               
                 MessageBox.Show("Por Favor Ingrese todos los datos del producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Detener la ejecución si faltan campos
+                return;
             }
 
-            // Obtener valores de los controles
+            
             string tipoComida = comboBox1.SelectedItem.ToString();
             decimal precioPorUnidad = Convert.ToDecimal(txtPrecioUnidad.Text);
             int cantidadPorPersona = Convert.ToInt32(txtCantidadPersona.Text);
 
 
 
-            // Calcular el subtotal
+            
             decimal subtotal = precioPorUnidad * cantidadPorPersona;
 
-            // Agregar una nueva fila al DataGridView
+            
             dgvComidas.Rows.Add(tipoComida, precioPorUnidad, cantidadPorPersona, subtotal);
 
             txtPrecioUnidad.Text = string.Empty;
@@ -152,8 +151,8 @@ namespace La_Yaya_Eventos_App
             decimal precioPorUnidadNinos = Convert.ToDecimal(txtPrecioNinos.Text);
             int cantidadPorNinos = Convert.ToInt32(textCantidadNinos.Text);
 
-            // Guardar el valor en una variable global si es necesario
-            cantidadNinos = Convert.ToInt32(textNinosTotales.Text);  // Asegúrate que cantidadNinos sea una variable de clase
+            
+            cantidadNinos = Convert.ToInt32(textNinosTotales.Text);  
 
             decimal subTotalNinos = precioPorUnidadNinos * cantidadPorNinos;
             totalComidaNinos = cantidadNinos * subTotalNinos;
@@ -161,10 +160,10 @@ namespace La_Yaya_Eventos_App
             string tipoComida = "Menu Niños";
             decimal subtotal = subTotalNinos;
 
-            // Agregar fila al DataGridView
+            
             dgvComidas.Rows.Add(tipoComida, precioPorUnidadNinos, cantidadPorNinos, subtotal);
 
-            // Limpiar los campos después de agregar
+            
             txtPrecioNinos.Text = string.Empty;
             textCantidadNinos.Text = string.Empty;
             textNinosTotales.Text = string.Empty;
@@ -174,7 +173,7 @@ namespace La_Yaya_Eventos_App
         {
             CenterPanel(panel2);
 
-            // Validar que todos los campos necesarios estén llenos
+            
             if (string.IsNullOrEmpty(txtCantidadPersonas.Text) ||
                 string.IsNullOrEmpty(txtPagoMozos.Text) ||
                 string.IsNullOrEmpty(txtGananciaxPersona.Text) ||
@@ -196,8 +195,8 @@ namespace La_Yaya_Eventos_App
             string textoResumen = "";
 
 
-            decimal totalComida = 0;  // Comida que se multiplicará por la cantidad de adultos
-            decimal totalComidaNinos = 0;  // Comida que se sumará directamente para niños
+            decimal totalComida = 0; 
+            decimal totalComidaNinos = 0;  
             StringBuilder resumenComida = new StringBuilder();
 
             resumenComida.AppendLine("Resumen del presupuesto.");
@@ -210,31 +209,31 @@ namespace La_Yaya_Eventos_App
                     string tipoComida = row.Cells["Column1"].Value.ToString();
                     decimal subTotalPorPersona = Convert.ToDecimal(row.Cells["Subtotal"].Value);
 
-                    // Si es "Menu Niños", sumarlo al total de comida para niños
+                   
                     if (tipoComida == "Menu Niños")
                     {
                         totalComidaNinos += subTotalPorPersona;
                     }
-                    // De lo contrario, es comida normal, sumarla al total de comida
+                    
                     else
                     {
                         totalComida += subTotalPorPersona;
                     }
 
-                    // Agregar el tipo de comida al resumen
+                    
                     resumenComida.AppendLine($"{tipoComida}.");
                 }
             }
 
-            // Calcular el total solo para la comida que se debe multiplicar por el número de personas
+           
             decimal totalComidaMultiplicada = totalComida * cantidadPersonas;
 
             
 
-            // Calcular el total para la comida de los niños (se suma directamente sin multiplicar)
+            
             decimal totalComidaNinosFinal = totalComidaNinos * cantidadNinos;
             int cantidadTotalPersonas = cantidadPersonas + cantidadNinos;
-            // Calcular la ganancia y el presupuesto total
+           
             decimal ganancia = Math.Round((cantidadPersonas + cantidadNinos) * gananciaxPersona, 2);
             decimal precioPorAdulto = Math.Round((totalComidaMultiplicada + pagoMozos + ganancia) / cantidadPersonas, 2);
             decimal totalPresupuesto = Math.Round(totalComidaMultiplicada + totalComidaNinosFinal + pagoMozos + ganancia, 2);
@@ -287,15 +286,15 @@ namespace La_Yaya_Eventos_App
             btnNuevoPresupuesto.Visible = false;
             btnImprimir.Visible = false;
 
-            // Crear un bitmap con el tamaño del Label (txtResumenPresupuesto)
+            
             int labelWidth = txtResumenPresupuesto.Width;
             int labelHeight = txtResumenPresupuesto.Height;
             Bitmap bmp = new Bitmap(labelWidth, labelHeight);
 
-            // Dibujar el contenido del Label en el bitmap
+            
             txtResumenPresupuesto.DrawToBitmap(bmp, new Rectangle(0, 0, labelWidth, labelHeight));
 
-            // Guardar la imagen en un archivo
+           
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "PNG Image|*.png";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -303,7 +302,7 @@ namespace La_Yaya_Eventos_App
                 bmp.Save(saveFileDialog.FileName, System.Drawing.Imaging.ImageFormat.Png);
             }
 
-            // Volver a mostrar los controles ocultos
+           
             lblGanancia.Visible = true;
             btnGuardarImg.Visible = true;
             btnNuevoPresupuesto.Visible = true;
@@ -318,18 +317,18 @@ namespace La_Yaya_Eventos_App
             btnNuevoPresupuesto.Visible = false;
             btnImprimir.Visible = false;
 
-            // Crear un bitmap con el tamaño del Label (txtResumenPresupuesto)
+            
             int labelWidth = txtResumenPresupuesto.Width;
             int labelHeight = txtResumenPresupuesto.Height;
             bmp = new Bitmap(labelWidth, labelHeight);
 
-            // Dibujar el contenido del Label en el bitmap
+            
             txtResumenPresupuesto.DrawToBitmap(bmp, new Rectangle(0, 0, labelWidth, labelHeight));
 
-            // Configurar el evento para la impresión
+            
             printDocument.PrintPage += new PrintPageEventHandler(printDocument_PrintPage);
 
-            // Abrir el cuadro de diálogo de impresión
+            
             PrintDialog printDialog = new PrintDialog();
             printDialog.Document = printDocument;
 
@@ -338,7 +337,7 @@ namespace La_Yaya_Eventos_App
                 printDocument.Print();
             }
 
-            // Volver a mostrar los controles ocultos
+            
             lblGanancia.Visible = true;
             btnGuardarImg.Visible = true;
             btnNuevoPresupuesto.Visible = true;
@@ -347,23 +346,23 @@ namespace La_Yaya_Eventos_App
 
         private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            // Configurar la resolución del bitmap según la resolución de la impresora
+            
             bmp.SetResolution(e.Graphics.DpiX, e.Graphics.DpiY);
 
-            // Obtener el tamaño de la imagen y el tamaño del área de impresión
+            
             int imageWidth = bmp.Width;
             int imageHeight = bmp.Height;
             int pageWidth = e.PageBounds.Width;
             int pageHeight = e.PageBounds.Height;
 
-            // Calcular el factor de escala si la imagen es más grande que la página
+            
             float scale = Math.Min((float)pageWidth / imageWidth, (float)pageHeight / imageHeight);
 
-            // Calcular las coordenadas X e Y para centrar la imagen y aplicar el escalado
+            
             int x = (int)((pageWidth - (imageWidth * scale)) / 2);
             int y = (int)((pageHeight - (imageHeight * scale)) / 2);
 
-            // Dibujar la imagen escalada y centrada en la página
+            
             e.Graphics.DrawImage(bmp, x, y, imageWidth * scale, imageHeight * scale);
         }
 
@@ -372,9 +371,9 @@ namespace La_Yaya_Eventos_App
         {
             panel1.Visible = true;
             panel2.Visible = true;
-            txtPrecioUnidad.Text = string.Empty; //cambiarrrr
-            txtCantidadPersona.Text = string.Empty; //cambiarrrr
-            // Limpiar los campos de texto
+            txtPrecioUnidad.Text = string.Empty; 
+            txtCantidadPersona.Text = string.Empty; 
+           
             txtCantidadPersonas.Text = string.Empty;
             txtPagoMozos.Text = string.Empty;
             txtGananciaxPersona.Text = string.Empty;
@@ -387,11 +386,9 @@ namespace La_Yaya_Eventos_App
 
             cbNinos.Checked = false;
 
-            // Limpiar la lista de comidas agregadas (DataGridView o ListView)
-            dgvComidas.Rows.Clear(); // Si estás usando un DataGridView
+            
+            dgvComidas.Rows.Clear();
 
-            // Limpiar otros campos o controles según sea necesario
-            //lblTotal.Text = "Total: $0"; ESTO NO ESTOY USANDO
             lblGanancia.Text = "";
             MessageBox.Show("Los campos han sido limpiados para un nuevo presupuesto.");
 
@@ -424,11 +421,11 @@ namespace La_Yaya_Eventos_App
 
         private void Form1_Resize_1(object sender, EventArgs e)
         {
-            // Ajustar el tamaño del panel activo
+            
 
 
-            // Opcionalmente, puedes centrar la imagen y el label si están visibles
-            CenterStaticControls(); // Este método se usa solo si deseas mantener la imagen y el label centrados cuando están visibles
+            
+            CenterStaticControls(); 
 
             CenterPanel(panel1);
             CenterPanel(panel2);
@@ -454,14 +451,14 @@ namespace La_Yaya_Eventos_App
 
         private void CenterStaticControls()
         {
-            // Centrar la imagen
+            
             pictureBox1.Location = new Point((this.ClientSize.Width - pictureBox1.Width) / 2, 20);
 
-            // Centrar el label debajo de la imagen
+            
             label1.Location = new Point((this.ClientSize.Width - label1.Width) / 2, pictureBox1.Bottom + 10);
 
 
-            int margin = 150; // Margen desde la parte inferior
+            int margin = 150; 
             btnCrearPresupuesto.Location = new Point((this.ClientSize.Width - btnCrearPresupuesto.Width) / 2, this.ClientSize.Height - btnCrearPresupuesto.Height - margin); // Posicionar el botón centrado en la parte inferior
 
 
