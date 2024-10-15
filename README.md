@@ -2,7 +2,8 @@
 
 <p>Hoy estoy feliz de compartir mi primera venta freelancer la cual llamamos "la Yaya Eventos App" una aplicación creada para ayudar a los organizadores de eventos a generar presupuestos detallados. Los presupuestos incluyen los costos de la comida, pago de mozos, ayudantes de cocina y otros gastos asociados. La aplicación permite generar, calcular y visualizar un presupuesto que incluye tanto a adultos como a niños.</p>
 
-![image](https://github.com/user-attachments/assets/4b079a94-29f9-41f6-8b79-f1d5f94d7d49)
+![image](https://github.com/user-attachments/assets/bf5dcd66-c3ba-45bc-a5b4-429153a5c3aa)
+
 
 
 <h4>Tecnologias Utilizadas 📑</h4>
