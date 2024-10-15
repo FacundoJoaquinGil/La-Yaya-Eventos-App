@@ -12,13 +12,13 @@
 
 <h4>Características Principales❗❗</h4>
 
-![image](https://github.com/user-attachments/assets/b947e513-8c3f-4e73-89ca-78031c43f6b3)
-
 <p>"Gestión de productos y menús" Permite agregar diferentes tipos de comida y menús para adultos y niños, con precios y cantidades personalizables.
   "Cálculo automático de presupuestos" Calcula el costo total del evento, dividiendo los costos entre adultos y niños, y proporcionando un resumen detallado.
   "Ganancia estimada" Calcula las ganancias estimadas basadas en el número de personas y el precio por persona.
   "Generación de reportes" Permite guardar el presupuesto como una imagen o imprimir directamente desde la aplicación.
   "Control de errores" Incluye validaciones para evitar errores al ingresar datos no válidos, como caracteres no numéricos</p>
+
+![image](https://github.com/user-attachments/assets/b947e513-8c3f-4e73-89ca-78031c43f6b3)
 
 <h4>Ejemplo de un presupuesto:</h4>
 
